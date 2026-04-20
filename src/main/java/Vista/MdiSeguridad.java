@@ -70,8 +70,9 @@ public class MdiSeguridad extends javax.swing.JFrame {
         frmMantenimientoBitacora = new javax.swing.JMenuItem();
         mnuReportes = new javax.swing.JMenu();
         mnuAyudas = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        cines = new javax.swing.JMenu();
         MantenimientoExamen = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -218,7 +219,7 @@ public class MdiSeguridad extends javax.swing.JFrame {
         mnuAyudas.setText("Ayudas");
         mnuGeneral.add(mnuAyudas);
 
-        jMenu2.setText("EXAMEN");
+        cines.setText("EXAMEN");
 
         MantenimientoExamen.setText("Vendedores");
         MantenimientoExamen.addActionListener(new java.awt.event.ActionListener() {
@@ -226,9 +227,17 @@ public class MdiSeguridad extends javax.swing.JFrame {
                 MantenimientoExamenActionPerformed(evt);
             }
         });
-        jMenu2.add(MantenimientoExamen);
+        cines.add(MantenimientoExamen);
 
-        mnuGeneral.add(jMenu2);
+        jMenuItem3.setText("CINES");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        cines.add(jMenuItem3);
+
+        mnuGeneral.add(cines);
 
         setJMenuBar(mnuGeneral);
 
@@ -393,6 +402,21 @@ public class MdiSeguridad extends javax.swing.JFrame {
         
     }//GEN-LAST:event_MantenimientoExamenActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+
+        System.out.println("entre a proceso del Mantenimiento de Examen Vendedores");
+    PeliculasCRUD ventana = new PeliculasCRUD();
+    jDesktopPane1.add(ventana); 
+    
+    Dimension desktopSize = jDesktopPane1.getSize();
+    Dimension FrameSize = ventana.getSize();
+    ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+    ventana.setVisible(true);
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -437,6 +461,7 @@ public class MdiSeguridad extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MantenimientoExamen;
+    private javax.swing.JMenu cines;
     private javax.swing.JMenuItem frmMantenimientoAplicaciones;
     private javax.swing.JMenuItem frmMantenimientoBitacora;
     private javax.swing.JMenuItem frmMantenimientoPerfiles;
@@ -446,9 +471,9 @@ public class MdiSeguridad extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem mantenimientoUsuarios;

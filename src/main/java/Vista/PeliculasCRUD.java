@@ -368,9 +368,12 @@ public class PeliculasCRUD extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        
+        
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new PeliculasCRUD().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new  PeliculasCRUD().setVisible(true));
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Clasificaciontxt;
