@@ -3,29 +3,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
+
 import Modelo.CinesDAO;
 import Controlador.Cines;
+import Controlador.clsBitacora;
+import Controlador.clsUsuarioConectado;
+import Modelo.BitacoraDAO;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+
 /**
- *
- * @author isaia
+ * @author isaia CORREGIDO POR JENNIFER BARRIOS 
+ * REFACTORIZADO PARA BITÁCORA
  */
 public class PeliculasCRUD extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PeliculasCRUD.class.getName());
+    // ID de aplicación para Bitácora (puedes cambiar el 100 por el que corresponda a Películas)
+    int codigoAplicacion = 100; 
 
-    /**
-     * Creates new form PeliculasCRUD
-     */
     public PeliculasCRUD() {
         initComponents();
-        llenadoDeTablas(); // Se carga la tabla al iniciar el formulario
+        llenadoDeTablas();
     }
 
-    public void limpiarTextos()
-    {
+    public void limpiarTextos() {
         Clasificaciontxt.setText("");
         Generotxt.setText("");
         Idiomatxt.setText("");
@@ -34,20 +36,20 @@ public class PeliculasCRUD extends javax.swing.JFrame {
         idPeliculastxt.setText("");
         preciotxt.setText("");
         txtbuscado.setText("");        
-        
     }
+
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("idPeliculas");
+        modelo.addColumn("ID Película");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Clasificacion");
-        modelo.addColumn("Genero");
+        modelo.addColumn("Clasificación");
+        modelo.addColumn("Género");
         modelo.addColumn("Idioma");
         modelo.addColumn("Subtitulado");
-        modelo.addColumn("precio");
+        modelo.addColumn("Precio");
 
         CinesDAO cinesDAO = new CinesDAO();
-        List<Cines> cines = cinesDAO.select(); // Obtiene la lista de películas
+        List<Cines> cines = cinesDAO.select(); 
 
         tablaPeliculas.setModel(modelo);
         String[] dato = new String[7];
@@ -63,6 +65,90 @@ public class PeliculasCRUD extends javax.swing.JFrame {
             modelo.addRow(dato);
         }
     }
+
+    // --- MÉTODOS CRUD CON BITÁCORA ---
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        if (idPeliculastxt.getText().isEmpty() || Nombretxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe llenar los campos obligatorios");
+            return;
+        }
+
+        CinesDAO cinesDAO = new CinesDAO();
+        Cines cineAInsertar = new Cines();
+
+        cineAInsertar.setIdPeliculas(Integer.parseInt(idPeliculastxt.getText()));
+        cineAInsertar.setNombre(Nombretxt.getText());
+        cineAInsertar.setClasificacion(Clasificaciontxt.getText());
+        cineAInsertar.setGenero(Generotxt.getText());
+        cineAInsertar.setIdioma(Idiomatxt.getText());
+        cineAInsertar.setSubtitulado(Subtituladotxt.getText());
+        cineAInsertar.setPrecio(Double.parseDouble(preciotxt.getText()));
+
+        cinesDAO.insert(cineAInsertar);
+
+        // REGISTRO EN BITÁCORA
+        int resultadoBitacora = 0;
+        BitacoraDAO bitacoraDAO = new BitacoraDAO();
+        clsBitacora bitacoraAInsertar = new clsBitacora();
+        bitacoraAInsertar.setIdUsuario(clsUsuarioConectado.getIdUsuario());
+        bitacoraAInsertar.setIdAplicacion(codigoAplicacion);
+        bitacoraAInsertar.setAccion("INS");
+        bitacoraAInsertar.setNombreUsuario(clsUsuarioConectado.getNombreUsuario());
+        bitacoraDAO.insert(bitacoraAInsertar);
+
+        JOptionPane.showMessageDialog(null, "Película registrada y bitácora actualizada.");
+        llenadoDeTablas();
+        limpiarTextos();
+    }                                            
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        CinesDAO cinesDAO = new CinesDAO();
+        Cines cineAActualizar = new Cines();
+
+        cineAActualizar.setIdPeliculas(Integer.parseInt(txtbuscado.getText())); 
+        cineAActualizar.setNombre(Nombretxt.getText());
+        cineAActualizar.setClasificacion(Clasificaciontxt.getText());
+        cineAActualizar.setGenero(Generotxt.getText());
+        cineAActualizar.setIdioma(Idiomatxt.getText());
+        cineAActualizar.setSubtitulado(Subtituladotxt.getText());
+        cineAActualizar.setPrecio(Double.parseDouble(preciotxt.getText()));
+
+        cinesDAO.update(cineAActualizar);
+
+        // REGISTRO EN BITÁCORA
+        BitacoraDAO bitacoraDAO = new BitacoraDAO();
+        clsBitacora bitacoraAInsertar = new clsBitacora();
+        bitacoraAInsertar.setIdUsuario(clsUsuarioConectado.getIdUsuario());
+        bitacoraAInsertar.setIdAplicacion(codigoAplicacion);
+        bitacoraAInsertar.setAccion("UPD"); // Marcamos como actualización
+        bitacoraDAO.insert(bitacoraAInsertar);
+
+        JOptionPane.showMessageDialog(null, "Película modificada correctamente.");
+        llenadoDeTablas();
+        limpiarTextos();
+    }                                            
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        CinesDAO cinesDAO = new CinesDAO();
+        Cines cineAEliminar = new Cines();
+
+        cineAEliminar.setIdPeliculas(Integer.parseInt(txtbuscado.getText()));
+        cinesDAO.delete(cineAEliminar);
+
+        // REGISTRO EN BITÁCORA
+        BitacoraDAO bitacoraDAO = new BitacoraDAO();
+        clsBitacora bitacoraAInsertar = new clsBitacora();
+        bitacoraAInsertar.setIdUsuario(clsUsuarioConectado.getIdUsuario());
+        bitacoraAInsertar.setIdAplicacion(codigoAplicacion);
+        bitacoraAInsertar.setAccion("DEL");
+        bitacoraDAO.insert(bitacoraAInsertar);
+
+        JOptionPane.showMessageDialog(null, "Película eliminada y acción registrada.");
+        llenadoDeTablas();
+        limpiarTextos();
+    }                                           
+
     public void buscarPelicula() {
         CinesDAO cinesDAO = new CinesDAO();
         Cines cineAConsultar = new Cines();
@@ -77,10 +163,18 @@ public class PeliculasCRUD extends javax.swing.JFrame {
             Idiomatxt.setText(cineAConsultar.getIdioma());
             Subtituladotxt.setText(cineAConsultar.getSubtitulado());
             preciotxt.setText(Double.toString(cineAConsultar.getPrecio()));
+            
+            // REGISTRO DE BÚSQUEDA EN BITÁCORA (Opcional según tu guía)
+            BitacoraDAO bitacoraDAO = new BitacoraDAO();
+            clsBitacora bitacoraAInsertar = new clsBitacora();
+            bitacoraAInsertar.setIdUsuario(clsUsuarioConectado.getIdUsuario());
+            bitacoraAInsertar.setIdAplicacion(codigoAplicacion);
+            bitacoraAInsertar.setAccion("QRY");
+            bitacoraDAO.insert(bitacoraAInsertar);
         } else {
-            JOptionPane.showMessageDialog(null, "Película no encontrada.",
-                "Información del Sistema", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Película no encontrada.");
         }
+    
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -182,57 +276,61 @@ public class PeliculasCRUD extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(label4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(36, 36, 36))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label3)
                             .addComponent(label5))
-                        .addGap(34, 34, 34)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(idPeliculastxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(Idiomatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(label8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Subtituladotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(label9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Idiomatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(label7)
-                                .addComponent(label6))
-                            .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(label9)
+                                    .addComponent(label6)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(Clasificaciontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Generotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(label11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Generotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(preciotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(label4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                                .addComponent(label11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(preciotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(label8)
+                                .addGap(18, 18, 18)
+                                .addComponent(Subtituladotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -261,8 +359,12 @@ public class PeliculasCRUD extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(label11)
-                            .addComponent(preciotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(31, 31, 31)
+                            .addComponent(preciotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
                     .addComponent(btnEliminar)
