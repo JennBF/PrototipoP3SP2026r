@@ -3,22 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
-import Controlador.clsSeguridad;
-import Controlador.clsBitacora;
-import Controlador.clsCines;
+
 import Controlador.clsCines;
 import Controlador.clsUsuarioConectado;
 import Modelo.BitacoraDAO;
-import Controlador.clsUsuario;
-import Modelo.Conexion;
+
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import java.io.File;
-import java.sql.Connection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -66,6 +58,11 @@ int codigoAplicacion=1086;
 
     public frmMantenimientoCine() {
         initComponents();
+        this.setClosable(true);
+        this.setIconifiable(true);
+        this.setMaximizable(true);
+        this.setResizable(true);
+      
         llenadoDeTablas();
         llenadoDeCombos();
     }
@@ -109,7 +106,7 @@ int codigoAplicacion=1086;
         label7 = new javax.swing.JLabel();
         btnReportes = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jInternalFrame1.setClosable(true);
         jInternalFrame1.setIconifiable(true);
@@ -171,6 +168,8 @@ int codigoAplicacion=1086;
                 "ID Peliculas", "Nombre ", "Clasificacion", "Genero", "Subtitulado", "Idioma", "Precio"
             }
         ));
+        tablaCines.setAutoscrolls(false);
+        tablaCines.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(tablaCines);
 
         txtContrasena.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -193,6 +192,7 @@ int codigoAplicacion=1086;
         label4.setText("ID a buscar");
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -287,11 +287,6 @@ int codigoAplicacion=1086;
                         .addContainerGap()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addComponent(label6)
-                                .addGap(29, 29, 29)
-                                .addComponent(txtGenero)
-                                .addGap(2, 2, 2))
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(label9)
                                     .addComponent(label8))
@@ -300,9 +295,15 @@ int codigoAplicacion=1086;
                                     .addComponent(txtSubtitulado, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                                     .addComponent(txtIdioma)))
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addComponent(label11)
-                                .addGap(70, 70, 70)
-                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                        .addComponent(label6)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(txtGenero))
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                        .addComponent(label11)
+                                        .addGap(70, 70, 70)
+                                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(2, 2, 2)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -87,6 +87,8 @@ public class MdiSeguridad extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jDesktopPane1.setToolTipText("Roli Isaias, Maria Celeste, Jennifer ");
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
@@ -404,13 +406,17 @@ public class MdiSeguridad extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 
-       System.out.println("entre a proceso del Mantenimiento de Examen Recuperatorio Cines");
+    System.out.println("entre a proceso del Mantenimiento de Examen Recuperatorio Cines");
+ 
     frmMantenimientoCine ventana = new frmMantenimientoCine();
-    jDesktopPane1.add(ventana); 
     
+    
+    jDesktopPane1.add(ventana); 
+
     Dimension desktopSize = jDesktopPane1.getSize();
     Dimension FrameSize = ventana.getSize();
     ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+    
     ventana.setVisible(true);
 
         // TODO add your handling code here:

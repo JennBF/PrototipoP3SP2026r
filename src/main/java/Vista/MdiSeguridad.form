@@ -219,6 +219,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Roli Isaias, Maria Celeste, Jennifer "/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
