@@ -9,5 +9,5 @@
 
 USE sig;
 
-INSERT INTO `Peliculas` (`id_peliculas`,`nombre_peliculas`,`clasificacion_peliculas`,`genero_peliculas`,`idioma_peliculas`,`subtitulado_peliculas`) VALUES (1,'pruebaexamen','conocida','54525905','2504587','1');
-INSERT INTO aplicaciones (Aplcodigo, Aplnombre, Aplestado) VALUES (1087, 'Peliculas', '1');
+INSERT INTO `Peliculas` (`idpeliculas`,`nombre`,`clasificacion`,`genero`,`idioma`,`subtitulado`,`precio`) VALUES (1,'pruebaexamen','conocida','54525905','2504587','1');
+INSERT INTO aplicaciones (Aplcodigo, Aplnombre, Aplestado) VALUES (1086, 'Peliculas', '1');
