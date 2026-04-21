@@ -109,13 +109,13 @@ int codigoAplicacion=1086;
         label7 = new javax.swing.JLabel();
         btnReportes = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jInternalFrame1.setClosable(true);
         jInternalFrame1.setIconifiable(true);
         jInternalFrame1.setMaximizable(true);
         jInternalFrame1.setResizable(true);
-        jInternalFrame1.setTitle("Mantenimiento Cines. Jennifer Barrios 9959-24-10016");
+        jInternalFrame1.setTitle("Mantenimiento Cines. Jennifer Barrios 9959-24-10016,María Celeste Mayen Ibarra 9959-23-3775, Roli Isaias Cedillo Chay 9959-24-1672");
         jInternalFrame1.setVisible(true);
 
         btnEliminar.setText("Eliminar");
@@ -287,11 +287,6 @@ int codigoAplicacion=1086;
                         .addContainerGap()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addComponent(label6)
-                                .addGap(29, 29, 29)
-                                .addComponent(txtGenero)
-                                .addGap(2, 2, 2))
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(label9)
                                     .addComponent(label8))
@@ -300,9 +295,15 @@ int codigoAplicacion=1086;
                                     .addComponent(txtSubtitulado, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                                     .addComponent(txtIdioma)))
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addComponent(label11)
-                                .addGap(70, 70, 70)
-                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                        .addComponent(label6)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(txtGenero))
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                        .addComponent(label11)
+                                        .addGap(70, 70, 70)
+                                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(2, 2, 2)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
