@@ -3,12 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controlador;
+import Modelo.CinesDAO;
+import java.util.List;
 
 /**
  *
- * @author isaia
+ * @author isaia /CORREGIDO POR JENNIFER 
  */
-public class Cines {
+public class clsCines {
     private int idPeliculas;
     private String Nombre;
     private String Clasificacion;
@@ -16,7 +18,7 @@ public class Cines {
     private String Idioma;
     private String Subtitulado;
     private double precio;
-    public Cines()
+    public clsCines()
     {
     }
 
@@ -75,29 +77,29 @@ public class Cines {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    public Cines(int idPeliculas)
+    public clsCines(int idPeliculas)
     {
     this.idPeliculas=idPeliculas;
     }
-    public Cines (int idPeliculas, String Nombre)
+    public clsCines (int idPeliculas, String Nombre)
     {
     this.idPeliculas=idPeliculas;
     this.Nombre=Nombre;
     }
-    public Cines (int idPeliculas, String Nombre, String Clasificacion)
+    public clsCines (int idPeliculas, String Nombre, String Clasificacion)
     {
     this.idPeliculas=idPeliculas;
     this.Nombre=Nombre;
     this.Clasificacion=Clasificacion;
     }
-    public Cines (int idPeliculas, String Nombre, String Clasificacion, String Genero)
+    public clsCines (int idPeliculas, String Nombre, String Clasificacion, String Genero)
     {
     this.idPeliculas=idPeliculas;
     this.Nombre=Nombre;
     this.Clasificacion=Clasificacion;
     this.Genero=Genero;
     }
-    public Cines (int idPeliculas, String Nombre, String Clasificacion, String Genero, String Idioma)
+    public clsCines (int idPeliculas, String Nombre, String Clasificacion, String Genero, String Idioma)
     {
     this.idPeliculas=idPeliculas;
     this.Nombre=Nombre;
@@ -105,7 +107,7 @@ public class Cines {
     this.Genero=Genero;
     this.Idioma=Idioma;
     }
-    public Cines (int idPeliculas, String Nombre, String Clasificacion, String Genero, String Idioma, String Subtitulado)
+    public clsCines (int idPeliculas, String Nombre, String Clasificacion, String Genero, String Idioma, String Subtitulado)
     {
     this.idPeliculas=idPeliculas;
     this.Nombre=Nombre;
@@ -114,7 +116,7 @@ public class Cines {
     this.Idioma=Idioma;
     this.Subtitulado=Subtitulado;
     }
-    public Cines (int idPeliculas, String Nombre, String Clasificacion, String Genero, String Idioma, String Subtitulado, double precio)
+    public clsCines (int idPeliculas, String Nombre, String Clasificacion, String Genero, String Idioma, String Subtitulado, double precio)
     {
     this.idPeliculas=idPeliculas;
     this.Nombre=Nombre;
@@ -127,6 +129,32 @@ public class Cines {
     @Override
     public String toString() {
         return "Cines{" + "idPeliculas=" + idPeliculas + ", Nombre=" + Nombre + ", Clasificacion=" + Clasificacion + ", Genero=" + Genero + ", Idioma=" + Idioma + ", Subtitulado=" + Subtitulado + ", precio=" + precio + '}';
+    }
+    
+    // Métodos de conexión
+    public List<clsCines> getListadoCines() {
+        CinesDAO cinesDAO = new CinesDAO();
+        return cinesDAO.select();
+    }
+
+    public int setIngresarCine(clsCines cine) {
+        CinesDAO cinesDAO = new CinesDAO();
+        return cinesDAO.insert(cine);
+    }
+
+    public int setModificarCine(clsCines cine) {
+        CinesDAO cinesDAO = new CinesDAO();
+        return cinesDAO.update(cine);
+    }
+
+    public int setBorrarCine(clsCines cine) {
+        CinesDAO cinesDAO = new CinesDAO();
+        return cinesDAO.delete(cine);
+    }
+
+    public clsCines getBuscarInformacionCinePorId(clsCines cine) {
+        CinesDAO cinesDAO = new CinesDAO();
+        return cinesDAO.query(cine);
     }
     
 }

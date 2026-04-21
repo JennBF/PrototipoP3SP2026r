@@ -1,6 +1,6 @@
 package Modelo;
 
-import Controlador.Cines;
+import Controlador.clsCines;
 import Modelo.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,12 +27,12 @@ public class CinesDAO {
         "SELECT idPeliculas, Nombre, Clasificacion, Genero, Idioma, Subtitulado, precio FROM peliculas WHERE idPeliculas=?";
 
 
-    public List<Cines> select() {
+    public List<clsCines> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Cines cine = null;
-        List<Cines> listaCines = new ArrayList<Cines>();
+        clsCines cine = null;
+        List<clsCines> listaCines = new ArrayList<clsCines>();
 
         try {
             conn = Conexion.getConnection();
@@ -48,7 +48,7 @@ public class CinesDAO {
                 String subtitulado    = rs.getString("Subtitulado");
                 double precio         = rs.getDouble("precio");
 
-                cine = new Cines(idPeliculas, nombre, clasificacion, genero, idioma, subtitulado, precio);
+                cine = new clsCines(idPeliculas, nombre, clasificacion, genero, idioma, subtitulado, precio);
                 listaCines.add(cine);
             }
 
@@ -64,7 +64,7 @@ public class CinesDAO {
     }
 
 
-    public int insert(Cines cine) {
+    public int insert(clsCines cine) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -95,7 +95,7 @@ public class CinesDAO {
     }
 
 
-    public int update(Cines cine) {
+    public int update(clsCines cine) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -126,7 +126,7 @@ public class CinesDAO {
     }
 
 
-    public int delete(Cines cine) {
+    public int delete(clsCines cine) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -151,7 +151,7 @@ public class CinesDAO {
     }
 
 
-    public Cines query(Cines cine) {
+    public clsCines query(clsCines cine) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -173,7 +173,7 @@ public class CinesDAO {
                 String subtitulado    = rs.getString("Subtitulado");
                 double precio         = rs.getDouble("precio");
 
-                cine = new Cines(idPeliculas, nombre, clasificacion, genero, idioma, subtitulado, precio);
+                cine = new clsCines(idPeliculas, nombre, clasificacion, genero, idioma, subtitulado, precio);
             }
 
         } catch (SQLException ex) {
