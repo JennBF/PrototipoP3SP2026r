@@ -220,7 +220,11 @@
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
       <Properties>
+<<<<<<< HEAD
         <Property name="toolTipText" type="java.lang.String" value="Roli Isaias, Maria Celeste, Jennifer "/>
+=======
+        <Property name="toolTipText" type="java.lang.String" value="Mantenimiento Cines. Jennifer Barrios 9959-24-10016,Mar&#xed;a Celeste Mayen Ibarra 9959-23-3775, Roli Isaias Cedillo Chay 9959-24-1672"/>
+>>>>>>> origin/RamaContenedores
       </Properties>
 
       <Layout>

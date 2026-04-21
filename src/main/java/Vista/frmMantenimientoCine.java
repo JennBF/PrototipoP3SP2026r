@@ -112,7 +112,7 @@ int codigoAplicacion=1086;
         jInternalFrame1.setIconifiable(true);
         jInternalFrame1.setMaximizable(true);
         jInternalFrame1.setResizable(true);
-        jInternalFrame1.setTitle("Mantenimiento Cines. Jennifer Barrios 9959-24-10016");
+        jInternalFrame1.setTitle("Mantenimiento Cines. Jennifer Barrios 9959-24-10016,María Celeste Mayen Ibarra 9959-23-3775, Roli Isaias Cedillo Chay 9959-24-1672");
         jInternalFrame1.setVisible(true);
 
         btnEliminar.setText("Eliminar");
