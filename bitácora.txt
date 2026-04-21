@@ -1,0 +1,107 @@
+commit 4f6d3117d29d1437cd6d57aceda4475c84fd5a38
+Author: [JennBF] <[jennifer.barrios001@gmail.com]>
+Date:   Tue Apr 21 00:18:05 2026 -0600
+
+    esperando que sea el cambio definitivo
+
+commit 05fd71a9ce26d429c288f3ad2e04df9352b6c6b3
+Author: Jennifer Barrios <jennifer.barrios001@gmail.com>
+Date:   Tue Apr 21 00:07:31 2026 -0600
+
+    Update MdiSeguridad.java corrigiendo contenedores
+
+commit ddc7134f62d449d8c1b9c2eb1c716c2855f05f0c
+Merge: 000dd9d 62063cc
+Author: [JennBF] <[jennifer.barrios001@gmail.com]>
+Date:   Tue Apr 21 00:04:29 2026 -0600
+
+    Aportes de celeste
+
+commit 000dd9df9bd0f66a8b0e9c848a176b3332d72f46
+Merge: be0fd7b 648cddf
+Author: [JennBF] <[jennifer.barrios001@gmail.com]>
+Date:   Tue Apr 21 00:02:48 2026 -0600
+
+    Roli y contenedores
+
+commit 648cddf77b6337815dce154a0a3857d2230d135e
+Author: Isa <isaiascedillo1313@gmail.com>
+Date:   Mon Apr 20 23:55:40 2026 -0600
+
+    Nomenclatura Formularios, Isaias Cedillo
+
+commit 62063ccb927dc596240dac71d4400b1910b7e7fa
+Author: Marice Mayen <¨mmayeni1@miumg.edu.gt¨>
+Date:   Mon Apr 20 23:55:14 2026 -0600
+
+    modificaciones2
+
+commit be0fd7b917c5205d44221c70bbdebc996da15e69
+Author: [JennBF] <[jennifer.barrios001@gmail.com]>
+Date:   Mon Apr 20 23:53:49 2026 -0600
+
+    arreglando formulario
+
+commit 54e3bea76249fb3a35b4c2eda1373696a055a073
+Author: Marice Mayen <¨mmayeni1@miumg.edu.gt¨>
+Date:   Mon Apr 20 23:21:20 2026 -0600
+
+    modificacion 2
+
+commit 44fbf6c06564eb82d404d032fb0a21d0698375ab
+Author: [JennBF] <[jennifer.barrios001@gmail.com]>
+Date:   Mon Apr 20 23:20:44 2026 -0600
+
+    Formulario de Cines
+
+commit 176890db99824e65d34c0e16eee7d74109646aad
+Author: [JennBF] <[jennifer.barrios001@gmail.com]>
+Date:   Mon Apr 20 21:56:05 2026 -0600
+
+    actualizando rama jennifer
+
+commit f17f02184bd1cf6ce3849c97db7c01382ccbefe2
+Merge: cf0f8f4 db430da
+Author: Marice26 <mmayeni1@miumg.edu.gt>
+Date:   Mon Apr 20 21:51:26 2026 -0600
+
+    Merge pull request #1 from JennBF/CelesteMI9959-23-3775
+    
+    modificaciones de bd
+
+commit db430da54a8d26085311efb905bff4fb6d73221b
+Author: Marice Mayen <¨mmayeni1@miumg.edu.gt¨>
+Date:   Mon Apr 20 21:48:43 2026 -0600
+
+    modificaciones de bd
+
+commit cf0f8f4942438b51390800344ae2c7076898c268
+Merge: 64c38ec 26636fb
+Author: Marice Mayen <¨mmayeni1@miumg.edu.gt¨>
+Date:   Mon Apr 20 12:46:51 2026 -0600
+
+    arreglando problemas
+
+commit 64c38ec36b133725445763ce0ec9a7a60b26c682
+Author: Marice Mayen <¨mmayeni1@miumg.edu.gt¨>
+Date:   Mon Apr 20 12:38:12 2026 -0600
+
+    arreglando errores de Marice
+
+commit 26636fb8a5c12652b8e6b392cca0aab49475dee6
+Author: [JennBF] <[jennifer.barrios001@gmail.com]>
+Date:   Mon Apr 20 12:22:17 2026 -0600
+
+    actualización
+
+commit 0c1be0e7582ce46e791526268f1056e2a61c95a5
+Author: [JennBF] <[jennifer.barrios001@gmail.com]>
+Date:   Mon Apr 20 11:43:43 2026 -0600
+
+    Agregando la estructura de Jennifer y Roli (Vendedores y Cines Peliculas)
+
+commit a6a89910da88470983819d8a2a9c68ed91b81ff7
+Author: Jennifer Barrios <jennifer.barrios001@gmail.com>
+Date:   Mon Apr 20 10:57:26 2026 -0600
+
+    Initial commit
